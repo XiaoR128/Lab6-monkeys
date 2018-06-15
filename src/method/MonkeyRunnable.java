@@ -2,6 +2,7 @@ package method;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,9 +17,11 @@ public class MonkeyRunnable implements Runnable{
 	
 	private final Monkey m;
 	private final Strategy stra;
-	public MonkeyRunnable(Monkey mm,Strategy stra) {
+	private CountDownLatch latch;
+	public MonkeyRunnable(Monkey mm,Strategy stra,CountDownLatch latch) {
 		this.m = mm;
 		this.stra = stra;
+		this.latch = latch;
 	}
 	
 	public void run() {
@@ -70,6 +73,7 @@ public class MonkeyRunnable implements Runnable{
 					y++;
 					CrossRiver.list.get(p).clearmonkeyi(m.getposition());
 					log.info("mokey:" + m.getid() + "方向是" + m.getdirection() + ",已经抵达岸边,共耗时" + (1 + y + k) + "秒");
+					m.setspendtime(1+y+k);
 					break;
 				}
 				if (a != 0) {
@@ -95,5 +99,6 @@ public class MonkeyRunnable implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		latch.countDown();
 	}
 }

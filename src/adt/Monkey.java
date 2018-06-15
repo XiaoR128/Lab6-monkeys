@@ -6,6 +6,7 @@ public class Monkey {
 	private final String direction;
 	private int position;
 	private int ladderi;
+	private int time;
 	
 	/**
 	 * 构造函数
@@ -76,4 +77,19 @@ public class Monkey {
 		return this.ladderi;
 	}
 	
+	/**
+	 * 设置过河花费的时间
+	 * @param 过河的time
+	 */
+	public void setspendtime(int time) {
+		this.time=time;
+	}
+	
+	/**
+	 * 获取过河的时间
+	 * @return 过河的时间time
+	 */
+	public int getspendtime() {
+		return time;
+	}
 }
