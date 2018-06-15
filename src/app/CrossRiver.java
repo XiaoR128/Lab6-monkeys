@@ -77,8 +77,8 @@ public class CrossRiver {
 			lili.addAll(li);
 			
 			for(int j=0;j<li.size();j++) {
-				int index = new Random().nextInt(2);
-				new Thread(new MonkeyRunnable(li.get(j),st[index],latch)).start();
+//				int index = new Random().nextInt(2);
+				new Thread(new MonkeyRunnable(li.get(j),st[0],latch)).start();
 			}
 			if(i<p) {
 				try {
