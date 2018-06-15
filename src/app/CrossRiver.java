@@ -77,8 +77,8 @@ public class CrossRiver {
 			lili.addAll(li);
 			
 			for(int j=0;j<li.size();j++) {
-//				int index = new Random().nextInt(2);
-				new Thread(new MonkeyRunnable(li.get(j),st[1],latch)).start();
+				int index = new Random().nextInt(2);
+				new Thread(new MonkeyRunnable(li.get(j),st[index],latch)).start();
 			}
 			if(i<p) {
 				try {
@@ -100,7 +100,7 @@ public class CrossRiver {
 		int sum=0;
 		int ss=N*(N-1)/2;
 		for(int i=0;i<size;i++) {
-			for(int j=0;j<size;j++) {
+			for(int j=i+1;j<size;j++) {
 				if(i!=j) {
 					if((lili.get(i).getid()-lili.get(j).getid())*(lili.get(i).getspendtime()-lili.get(j).getspendtime())>=0) {
 						sum+=1;
